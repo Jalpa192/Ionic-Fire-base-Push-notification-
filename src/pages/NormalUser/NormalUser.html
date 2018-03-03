@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title start>Notifications</ion-title>
+        <button ion-button menuToggle end>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-list class="events-listing notification-list">
+        <div *ngIf="normalUsers?.length == 0">
+            You don't have any event invite
+        </div>
+        <ion-item-sliding *ngFor="let normalUser of normalUsers" class="row" [ngClass]="{'blue': normalUser.Confirmation == 1,
+                                                                                        'green':normalUser.Confirmation == 2,
+                                                                                        'red':normalUser.Confirmation==3}">
+            <ion-item>
+                <div class="cst-item-content">
+                    <div class="title1 mb-10">{{normalUser.EventName}}</div>
+                    <div class="grp-txt">
+                        <div class="txt1">
+                            <i class="cmn-icn icn-calendar"></i>{{normalUser.EventDate | date:'dd-MM-yyyy'}}
+                        </div>
+                        <div class="txt1">
+                            <i class="cmn-icn icn-clock"></i>{{normalUser.EventStartTime | timeFormator}} - {{normalUser.EventEndTime | timeFormator}}
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="txt1">
+                            <ion-icon name="pin"></ion-icon>{{normalUser.Location}}
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="txt1">
+                            <ion-icon name="man"></ion-icon>{{normalUser.OrganizedBy}}
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item-options side="left" *ngIf="normalUser.Confirmation == 1">
+                <button ion-button (click)="Confirm(normalUser)" class="confirm"> <i class="cmn-icn icn-confirm"></i>Confirm</button>
+                <button ion-button (click)="Reject(normalUser)" class="reject"><i class="cmn-icn icn-reject"></i>Reject</button>
+            </ion-item-options>
+        </ion-item-sliding>
+
+    </ion-list>
+
+</ion-content>

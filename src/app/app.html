@@ -1,0 +1,22 @@
+<div>
+    <ion-menu [content]="content" side="right" persistent="true">
+        <ion-content>
+            <ion-list>
+                <ion-icon menuClose name="close" class="menu-close"></ion-icon>
+
+                <div class="user-detail">
+                    <div class="img-cont"><img src="{{imgurl}}" />
+                    </div>
+                    <h3>{{userDetails?.FirstName}} {{userDetails?.LastName}} ({{userDetails?.RoleName}})</h3>
+                </div>
+                <ul class="menu-listing">
+                    <li menuClose ion-item *ngFor="let p of sideMenu" (click)="openPage(p)">
+                        {{p.menuName}}
+                    </li>
+                </ul>
+            </ion-list>
+        </ion-content>
+
+    </ion-menu>
+    <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+    <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

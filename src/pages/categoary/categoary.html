@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle end>
+                    <ion-icon name="menu"></ion-icon>
+            </button>
+        <ion-title>Category</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list no-lines>
+        <div class="cmn-pg-spc category-pg">
+            <form (ngSubmit)="GetEventList(CategoryForm.value)" #CategoryForm="ngForm">
+                <h3 class="title3">Select Category and Sub Category for Events</h3>
+                <ion-item>
+                    <ion-label>Category <span class="required">*</span> </ion-label>
+                    <ion-select [(ngModel)]="categoryId" required name="categoryId" #categoryIdRef="ngModel" (ngModelChange)="LoadSubCategory($event)">
+                        <ion-option *ngFor="let item of categoryList" [value]="item.Value">{{item.Text}}</ion-option>
+                    </ion-select>
+                    <ion-label [hidden]="categoryIdRef.valid || categoryIdRef.pristine">Please Select Category </ion-label>
+                </ion-item>
+                <ion-item [hidden]="categoryIdRef.valid || categoryIdRef.pristine">
+                    <ion-label>Please Select Category </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Sub Category <span class="required">*</span></ion-label>
+                    <ion-select [(ngModel)]="subCategoryId" required name="subCategoryId" #subcategoryIdRef="ngModel" [disabled]="!categoryId">
+                        <ion-option *ngFor="let item of subcategoryList" [value]="item.Value">{{item.Text}}</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item [hidden]="subcategoryIdRef.valid || subcategoryIdRef.pristine">
+                    <ion-label>Please Select Sub Category </ion-label>
+                </ion-item>
+                <div class="cmn-btn1">
+                    <button ion-button block round outline color="light" class="btnst" [disabled]="!CategoryForm.form.valid">Go</button>
+                </div>
+            </form>
+        </div>
+    </ion-list>
+</ion-content>

@@ -1,0 +1,47 @@
+<ion-content padding>
+    <div class="login-pg" [hidden]="isShow">
+        <div class="login-header">
+            <img src="assets/gateway-logo.png" alt="logo" />
+            <div class="h2-st-1">Gateway <br/>Event Control Management</div>
+        </div>
+        <div class="with-icon">
+            <i class="cmn-icn icn-mobile"></i>
+            <ion-item>
+                <ion-input placeholder="Phone Number" [(ngModel)]="credentials.MobileNo" name="MobileNo" type="text" pattern="[789][0-9]{9}" required></ion-input>
+            </ion-item>
+        </div>
+        <div class="with-icon">
+            <i class="cmn-icn icn-pass"></i>
+            <ion-item>
+                <ion-input type="password" placeholder="Password" [(ngModel)]="credentials.Password" name="Password" required></ion-input>
+            </ion-item>
+        </div>
+        <div class="login-footer">
+            <div class="inner">
+                <div class="cmn-btn1">
+                    <button ion-button block round outline color="light" (click)="signin()" class="btnst">Login</button>
+                </div>
+                <a (click)="forgotPassword()" class="cmn-link" style="cursor: pointer">Forgot password ?</a>
+            </div>
+            <div class="site-info">&copy; 2017. Gatewaytechnolabs Pvt. Ltd. All Rights Reserved.</div>
+        </div>
+    </div>
+</ion-content>
+
+<!--<div class="login-pg">
+
+
+	<div class="with-icon">
+		<i class="cmn-icn icn-mobile"></i>
+		<div class="input-wrapper">
+			<input type="text" placeholder="Cell Number" />
+		</div>
+	</div>
+
+	<div class="with-icon">
+		<i class="cmn-icn icn-pass"></i>
+		<div class="input-wrapper">
+			<input type="text" placeholder="Password" />
+		</div>
+	</div>
+</div>-->

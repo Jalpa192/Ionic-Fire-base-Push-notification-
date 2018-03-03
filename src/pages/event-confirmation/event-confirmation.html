@@ -1,0 +1,133 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>User Confirmation Details</ion-title>
+        <button ion-button menuToggle end>
+            <ion-icon name="menu"></ion-icon>
+    </button>
+    </ion-navbar>
+
+</ion-header>
+<ion-content>
+    <!-- <div padding> -->
+
+    <div class="cst-item-content" padding>
+        <div class="title1 mb-10">{{eventdetails.EventName}}</div>
+        <div class="grp-txt">
+            <div class="txt1">
+                <i class="cmn-icn icn-calendar"></i>{{eventdetails.EventDate | date:'dd-MM-yyyy'}}
+            </div>
+            <div class="txt1">
+                <i class="cmn-icn icn-clock"></i>{{eventdetails.EventStartTime | timeFormator}} - {{eventdetails.EventEndTime | timeFormator}}
+            </div>
+            <div class="clearfix"></div>
+            <div class="txt1">
+                <ion-icon name="pin"></ion-icon>{{eventdetails.Location}}
+            </div>
+            <div class="clearfix"></div>
+            <div class="txt1">
+                <ion-icon name="man"></ion-icon>{{eventdetails.OrganizedBy}}
+            </div>
+        </div>
+    </div>
+    <div class="segment-div">
+        <ion-segment [(ngModel)]="status">
+            <ion-segment-button value="2">
+                Accepted ({{acceptUserCount}})
+            </ion-segment-button>
+            <ion-segment-button value="1">
+                Waiting ({{waitUserCount}})
+            </ion-segment-button>
+            <ion-segment-button value="3">
+                Rejected ({{rejectUserCount}})
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+
+    <div [ngSwitch]="status">
+        <div *ngSwitchCase="2">
+            <ion-scroll scrollY="true">
+                <ul class="confirm-listing">
+                    <li *ngIf="acceptUserList?.length == 0">
+                        <div class="title4"> No one accepted the event </div>
+                    </li>
+                    <li *ngFor="let item of acceptUserList">
+                        <div class="userimg">
+                            <img src="{{item.ProfileImage}}" />
+                        </div>
+                        <div class="title4">
+                            {{item.FirstName}} {{item.LastName}}
+                        </div>
+                        <div class="designation {{item.Role |lowercase}}">
+                            {{item.Role}}
+                        </div>
+                        <div class="status">
+                            <img src="assets/status-accepted.png" />
+                        </div>
+                    </li>
+                </ul>
+            </ion-scroll>
+        </div>
+        <div *ngSwitchCase="1">
+            <ion-scroll scrollY="true" [ngClass]="{'bpad': showFooter}">
+                <ul class="confirm-listing">
+                    <li *ngIf="waitUserList?.length == 0">
+                        <div class="title4"> No waiting invite </div>
+                    </li>
+                    <li *ngFor="let item of waitUserList;let itemindex = index">
+                        <div class="cmn-checkbox">
+                            <input type="checkbox" [value]="item.Id" (change)="sendMultipleRemider(item.Id)" [checked]="multiRemider[itemindex].checked ? 'checked' :''" />
+                            <span></span>
+                        </div>
+                        <div class="userimg">
+                            <img src="{{item.ProfileImage}}" />
+                        </div>
+                        <div class="title4">
+                            {{item.FirstName}} {{item.LastName}}
+                        </div>
+                        <div class="designation {{item.Role |lowercase}}">
+                            {{item.Role}}
+                        </div>
+                        <div class="status" (click)="sendSingleRemider(item.Id)">
+                            <img src="assets/status-alert.png" />
+                        </div>
+                    </li>
+                </ul>
+
+            </ion-scroll>
+        </div>
+
+        <div *ngSwitchCase="3">
+            <ion-scroll scrollY="true">
+                <ul class="confirm-listing">
+                    <li *ngIf="rejectUserList?.length == 0">
+                        <div class="title4"> No one rejected the event </div>
+                    </li>
+                    <li *ngFor="let item of rejectUserList">
+                        <div class="userimg">
+                            <img src="{{item.ProfileImage}}" />
+                        </div>
+                        <div class="title4">
+                            {{item.FirstName}} {{item.LastName}}
+                        </div>
+                        <div class="designation {{item.Role |lowercase}}">
+                            {{item.Role}}
+                        </div>
+                        <div class="status">
+                            <img src="assets/status-notaccepted.png" />
+                        </div>
+                    </li>
+                </ul>
+            </ion-scroll>
+        </div>
+    </div>
+</ion-content>
+<ion-footer *ngIf="status==1 && showFooter">
+    <div class="cst-toast-msg">
+        <div class="status">
+            <img src="assets/status-alert.png">
+        </div>
+        <p>Send Reminder to Multiple Users</p>
+        <a href="#" class="btn-grey-small" (click)="sendRemiderNotification()">Send</a>
+    </div>
+</ion-footer>

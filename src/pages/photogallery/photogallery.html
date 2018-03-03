@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle end>
+                    <ion-icon name="menu"></ion-icon>
+            </button>
+    <ion-title>
+      Photo Gallery
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list no-lines>
+    <div class="category-pg">
+      <ion-item>
+          <ion-label>Select Team </ion-label>
+          <ion-label>Team <span class="required">*</span> </ion-label>
+        <ion-select [(ngModel)]="categoryId" required name="categoryId" #categoryIdRef="ngModel" (ngModelChange)="LoadTeam($event)">
+          <ion-option *ngFor="let item of teamList" [value]="item.Value">{{item.Text}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+  </ion-list>
+  <div class="team-members">
+    <ion-item *ngIf="userList?.length == 0" no-lines>
+      <div class="title4"> No member in team. </div>
+    </ion-item>
+    <ion-grid>
+      <ion-row wrap>
+        <ion-col col-4 *ngFor="let user of userList">
+          <img src="{{user.ProfileImage}}" height="50" width="50"> <br/>
+          <label>{{user.FirstName}} {{user.LastName}}</label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

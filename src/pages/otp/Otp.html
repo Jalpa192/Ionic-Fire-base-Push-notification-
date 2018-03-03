@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title> OTP</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content class="background">
+    <ion-card>
+        <ion-card-content>
+            <ion-list no-lines>
+                <div class="spacer" style="height: 10px;"></div>
+                <ion-input type="hidden" [(ngModel)]="OTP.MobileNo" required></ion-input>
+                <ion-label color="theme">Check your mail for OTP</ion-label>
+                <ion-item>
+                    <ion-input type="text" [(ngModel)]="OTP.Otp" placeholder="Enter your OTP here..." required></ion-input>
+                </ion-item>
+
+                <div class="spacer" style="height: 10px;"></div>
+                <button ion-button block round outline color="light" (click)="checkOTP()">Go</button>
+                <div class="spacer" style="height: 10px;"></div>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

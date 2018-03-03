@@ -1,0 +1,32 @@
+page-event-confirmation {
+    .cst-item-content {
+        background-color: #EDEAEA;
+        .title1 {
+            font-size: 20px;
+        }
+        .grp-txt .txt1 {
+            font-size: 15px;
+        }
+    }
+    .segment-div {
+        background-color: map-get($colors, dark);
+    }
+    .segment-md .segment-button.segment-activated {
+        color: map-get($colors, theme);
+    }
+    .segment-md .segment-button {
+        color: map-get($colors, light);
+    }
+    .segment-md .segment-button.segment-activated {
+        border-color: map-get($colors, theme);
+        border-bottom-width: 4px;
+    }
+    ion-scroll {
+        position: absolute;
+        width: 100%;
+        height: 78%;
+    }
+    .bpad {
+        height: calc(78% - 40px);
+    }
+}

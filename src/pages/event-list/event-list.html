@@ -1,0 +1,63 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Event</ion-title>
+        <button ion-button menuToggle end>
+            <ion-icon name="menu"></ion-icon>
+    </button>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-list class="events-listing">
+        <ion-item *ngIf="eventList?.length == 0" padding>
+            <div class="title4"> No event in selected category. </div>
+        </ion-item>
+        <ion-item-sliding *ngFor="let item of eventList; let i = index" #slidingItem>
+            <ion-item [ngClass]="colors[i]">
+                <div class="cst-item-media" (click)="goToViewConfirmationPage(item)">
+                    <h3>{{item.AcceptedInvite}}<span>/{{item.TotalInvite}}</span></h3>
+                </div>
+                <div class="cst-item-content" (click)="goToViewConfirmationPage(item)">
+                    <div class="title1 mb-10">{{item.EventName}}</div>
+                    <div class="grp-txt">
+                        <div class="txt1">
+                            <i class="cmn-icn icn-calendar"></i>{{item.EventDate | date:'dd-MM-yyyy'}}
+                        </div>
+                        <div class="txt1">
+                            <i class="cmn-icn icn-clock"></i>{{item.EventStartTime | timeFormator}} - {{item.EventEndTime | timeFormator}}
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="txt1">
+                            <ion-icon name="pin"></ion-icon> {{item.Location}}
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="txt1">
+                            <ion-icon name="man"></ion-icon> {{item.OrganizedBy}}
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item-options side="left">
+                <button ion-button color="primary" *ngIf="!item.IsInviteSend" (click)="sendInvitePopup(item.Id,slidingItem)">
+                  <i class="cmn-icn icn-user-big"></i>Send Invite
+                </button>
+                <button ion-button color="primary" *ngIf="item.IsInviteSend" (click)="sendNotification(item.Id,slidingItem)">
+				        	<i class="cmn-icn icn-noti-big"></i>Send Remider
+			        	</button>
+            </ion-item-options>
+            <ion-item-options side="right" *ngIf="!item.IsInviteSend">
+                <button ion-button color="dark" (click)="EditEvent(item)">
+                    <ion-icon name="create"></ion-icon>	edit
+				        </button>
+                <button ion-button color="dark" (click)="DeleteEvent(item.Id)">
+                    <ion-icon name="trash"></ion-icon>Delete
+			        	</button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-icon name="add-circle" [navPush]="addEventPage"></ion-icon>
+
+
+</ion-content>

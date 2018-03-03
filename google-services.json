@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "376235150910",
+    "firebase_url": "https://gtl-event-manager.firebaseio.com",
+    "project_id": "gtl-event-manager",
+    "storage_bucket": "gtl-event-manager.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:376235150910:android:ca880595ee1f6c34",
+        "android_client_info": {
+          "package_name": "com.gtltest.eventmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "376235150910-6ssq32p43s6hosn85knfi95729m2a8aq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9qN21UXC5L-poCNHZ4qkJV_wLCdq8JNc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

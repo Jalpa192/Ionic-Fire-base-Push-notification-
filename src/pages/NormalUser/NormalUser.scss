@@ -1,0 +1,22 @@
+normal-user {
+    .notification-list ion-item-sliding {
+        border-left-width: 4px;
+        border-left-style: solid;
+    }
+    .notification-list ion-item-sliding.blue {
+        border-left-color: blue;
+    }
+    .notification-list ion-item-sliding.green,
+    .notification-list ion-item-sliding.active-options-left {
+        border-left-color: green;
+    }
+    .notification-list ion-item-sliding.red {
+        border-left-color: red;
+    }
+    .confirm {
+        background-color: green;
+    }
+    .reject {
+        background-color: red;
+    }
+}

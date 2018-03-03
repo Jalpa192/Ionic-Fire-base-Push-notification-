@@ -1,0 +1,91 @@
+page-event-list {
+    .events-listing .pink .cst-item-media {
+        background-color: #ce689a;
+    }
+    .events-listing .green .cst-item-media {
+        background-color: #02af9b;
+    }
+    .events-listing .orange .cst-item-media {
+        background-color: #eb802d;
+    }
+    .events-listing .blue .cst-item-media {
+        background-color: #019ebd;
+    }
+    .events-listing .red .cst-item-media {
+        background-color: #db3f52;
+    }
+    .events-listing .purple .cst-item-media {
+        background-color: #8b5fb2;
+    }
+    .events-listing li {
+        display: flex;
+        align-items: center;
+    }
+    .events-listing {
+        padding: 0px;
+        li {
+            padding: 15px;
+            border-bottom: 1px solid #d6d6d6;
+        }
+        .cst-item-media {
+            margin-right: 15px;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            text-align: center;
+            line-height: 44px;
+            h3 {
+                color: #FFF;
+                font-size: 14px;
+                span {
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+    .item-grow {
+        flex-grow: 1;
+    }
+    .mr-15 {
+        margin-right: 15px;
+    }
+    .mb-10 {
+        margin-bottom: 10px;
+    }
+    .clearthis {
+        &:after {
+            clear: both;
+            content: '';
+            display: block;
+        }
+    }
+    .grp-txt {
+        @extend .clearthis;
+        .txt1 {
+            float: left;
+            margin-right: 10px;
+            margin-left: 0;
+            margin-bottom:5px;
+            display: flex;
+            &:first-child {
+                margin-left: 0;
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+            i, ion-icon {
+                margin-right: 5px;
+            }
+        }
+    }
+    .icn-clock {
+        background-position: -38px 0px;
+        height: 12px;
+        width: 12px;
+    }
+    .icn-calendar {
+        background-position: -25px 0px;
+        height: 12px;
+        width: 12px;
+    }
+}
